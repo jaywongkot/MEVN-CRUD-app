@@ -40,15 +40,16 @@
       this.axios.get(uri).then(response => {
         this.posts = response.data;
       });
+    },
+    methods: {
+      deletePost(id)
+      {
+        let uri = `http://localhost:4000/posts/delete/${id}`;
+        this.axios.delete(uri).then(response => {
+          this.posts.splice(this.posts.indexOf(id), 1);
+          return response; // to eliminate the "response is not used..." warning
+        });
+      }
     }
-    // methods: {
-    //   deletePost(id)
-    //   {
-    //     let uri = `http://localhost:4000/posts/delete/${id}`;
-    //     this.axios.delete(uri).then(response => {
-    //       this.posts.splice(this.posts.indexOf(id), 1);
-    //     });
-    //   }
-    // }
   }
 </script>
